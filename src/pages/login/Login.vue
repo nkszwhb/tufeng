@@ -104,7 +104,7 @@ export default {
           
           if(result){
             this.getCode = result;
-            let num = 10;
+            let num = 15;
             const timer = setInterval(()=>{
               if(num > 0){
                 this.btnTip = `${num --}s`;
@@ -142,7 +142,7 @@ export default {
             this.$Toast('登录成功！');
             this.$store.dispatch('handleLogin',true);
             this.$center.$emit('toggleLogin',false);
-            this.$router.push('/order');
+            this.$router.push('/mine');
           }
         }
         else{
@@ -166,7 +166,7 @@ export default {
           this.$Toast('登录成功！');
           this.$store.dispatch('handleLogin',true);
           this.$center.$emit('toggleLogin',false);
-          this.$router.push('/order');
+          this.$router.push('/mine');
         }
       }else{
         this.$Toast('请输入完整！')

@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import order from './Order'
-import personInfo from './PersonInfo'
+
 import mineService from '../services/mineService'
+import Order from './Order'
+import PersonInfo from './PersonInfo'
+import Home from './Home'
+import Discover from "./Discover"
+import Detail from './Detail'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -28,14 +32,16 @@ export default new Vuex.Store({
       }
       else{
         context.dispatch('handleLogin',false);
-        console.log('核对没登录了');
 
       }
     }
   },
 
   modules: {
-    order,
-    personInfo,
+    Order,
+    PersonInfo,
+    Home,
+    Discover,
+    Detail
   }
 })

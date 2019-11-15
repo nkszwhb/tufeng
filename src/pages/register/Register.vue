@@ -60,7 +60,7 @@ export default {
           
           if(result){
             this.getCode = result;
-            let num = 10;
+            let num = 15;
             const timer = setInterval(()=>{
               if(num > 0){
                 this.btnTip = `${num --}s`;

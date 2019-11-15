@@ -28,7 +28,6 @@
     "vue-template-compiler": "^2.6.10"
   },
   "postcss": {
-<<<<<<< HEAD
     "plugins": {
       "autoprefixer": {},
       "postcss-pxtorem": {
@@ -38,19 +37,9 @@
       }
     }
   },
-=======
-      "plugins": {
-        "autoprefixer": {},
-        "postcss-pxtorem": {
-          "rootValue": 37.5,
-          "propList": ["*"],
-          "selectorBlackList": [".tab-bar"]
-        }
-      }
-    },
->>>>>>> cc
   "browserslist": [
     "> 1%",
     "last 2 versions"
   ]
+
 }

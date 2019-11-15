@@ -7,7 +7,7 @@
 		<van-tab title="待评价">g</van-tab>
 		<van-tab title="退款">dd</van-tab>
 	</van-tabs>
-	<button class="sign-btn" @click="outLoginAction">退出</button>
+	<!-- <button class="sign-btn" @click="outLoginAction">退出</button> -->
 </div>
 </template>
 
@@ -32,11 +32,7 @@ export default{
 		}
 	},
 	methods:{
-		async outLoginAction(){
-			let result = await mineService.requestOutLogin();
-			this.$store.dispatch('handleLogin',false);
-			this.$router.push('/mine');
-		}
+
 	},
 	created(){
 
@@ -47,12 +43,7 @@ export default{
 
 <style lang="scss" scoped>
 #order{
-	.nav{
-		display: flex;
-			.van-tab{
-		flex: 1;
-	}
-	}
+
 
 }
 </style>

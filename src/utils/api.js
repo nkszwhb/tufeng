@@ -92,6 +92,24 @@ const WEIBO_LOGIN = '/api/user/weibo_login';
 */
 const FIND_CODE = '/api/user/find_code';
 
+/*
+商品列表接口
+参数：id
+*/
+const GOODS_LIST_API = '/api/homepage/banner/v1.5.0 ';
+
+
+/*
+商品详情接口
+参数：id
+*/
+const GOODS_DETAIL_API = '/api/product/101577807';
+
+// 发现页面接口
+const MENU = '/api/article/menu';
+
+
+
 export default{
   SEND_CODE,
   REGISTER_API,
@@ -99,5 +117,10 @@ export default{
   CHECK_LOGIN,
   OUT_LOGIN,
   QQ_LOGIN,
-  WEIBO_LOGIN
+  WEIBO_LOGIN,
+  GOODS_LIST_API,
+  MENU,
+  GOODS_DETAIL_API
+
 }
+

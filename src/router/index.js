@@ -28,6 +28,20 @@ const routes = [
 	{
 	  path: '/mine',
 	  component: ()=>import('../pages/mine/mine'),
+	  children: [
+		{
+		  path: 'editUserInfo',
+		  props: true,
+		  component: ()=>import('../pages/mine/edit-userInfo/EditUserInfo'),
+		  children:[
+			{
+				path: 'myUserInfo',
+				props: true,
+				component: ()=>import('../pages/mine/edit-userInfo/MyUserInfo')
+			}
+		  ]
+		}
+	  ]
 	},
 	{
 	  path: '/login',
@@ -42,6 +56,10 @@ const routes = [
 		component:()=>import('../pages/register/Find-code')
 	},
 	homeRouter,
+	{
+		path:'/detail',
+		component:()=>import('../pages/detail/detail')
+	},
 	{
 		path: '/404',
 		component: ()=>import('../pages/common/not-find/NotFind')
