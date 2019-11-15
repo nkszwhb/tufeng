@@ -4,23 +4,19 @@
       <router-view></router-view>
     </keep-alive>
     <tab-bar></tab-bar>
-	
-	<category class="category" ></category>
-	
+
+
   </div>
 </template>
 <script>
-	import TabBar from './components/tab-bar'
-	import category from './pages/category/category'
+import TabBar from './components/tab-bar'
+
 export default {
   components: {
     [TabBar.name]: TabBar,
-	category
   },
-  data(){
-    return {
-
-    }
+  created(){
+		this.$store.dispatch('checkLogin');
   }
 }	
 </script>

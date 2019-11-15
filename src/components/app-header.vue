@@ -1,46 +1,45 @@
 <template>
 <div class="app-header border-bottom">
-  <van-icon v-if="hasBack" class="back-btn" name="arrow-left" @click="backAction"/>
-  <h1 class="title text-overflow">{{title}}</h1>
+  <van-icon v-if="hasBack" class="back-btn" name="arrow-left" @click="backAction"></van-icon>
+  <h1 class="title oneline-ellipsis">{{title}}</h1>
   <slot name="right-btn"/>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'app-header',
-  props: {
-    title: {
-      type: String,
-      required: true
+  name:'app-header',
+  props:{
+    title:{
+      type:String,
+      require:true
     },
-    hasBack: {
-      type: Boolean,
-      default: false
+    hasBack:{
+      type:Boolean,
+      default:false
     }
   },
-  methods: {
+  methods:{
     backAction(){
       this.$router.back();
     }
   }
 }
 </script>
-
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .app-header{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 44px;
+    height: 49px;
     .title{
       width: 70%;
       margin: 0 auto;
-      height: 44px;
-      line-height: 44px;
+      height: 49px;
+      line-height: 49px;
       text-align: center;
-      font-size: 16px;
+      font-size: 18px;
     }
     .back-btn{
       position: absolute;
@@ -49,6 +48,7 @@ export default {
       padding: 0 10px;
       font-size: 20px;
       line-height: 44px;
+      color:blue
     }
   }
 </style>

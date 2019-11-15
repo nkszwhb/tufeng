@@ -11,9 +11,12 @@ import {
 	Checkbox, 
 	CheckboxGroup,
 	Button,
+	Tab,
+	Tabs,
 	IndexBar, 
 	IndexAnchor
 } from 'vant'
+
 import AppScroll from '../components/app-scroll'
 import AppHeader from '../components/app-header'
 
@@ -33,13 +36,13 @@ export default {
 			.use(Button)
 			.use(IndexBar)
 			.use(IndexAnchor)
+			.use(Tab)
+			.use(Tabs)
 			.use(ActionSheet);
 		Vue.prototype.$Toast = Toast;
 		// 使用自定义的滚动组件
 		Vue.component(AppScroll.name, AppScroll);
 		Vue.component(AppHeader.name, AppHeader);
-
 		Vue.$center = Vue.prototype.$center = new Vue();
-
 	}
 }
