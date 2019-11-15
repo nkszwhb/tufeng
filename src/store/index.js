@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import order from './Order'
-import personInfo from './PersonInfo'
+import Order from './Order'
+import PersonInfo from './PersonInfo'
+import Home from './Home'
+import Discover from "./Discover"
+import Detail from './Detail'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -13,7 +16,10 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-	 order,
-	 personInfo
+    Order,
+    PersonInfo,
+    Home,
+    Discover,
+    Detail
   }
 })

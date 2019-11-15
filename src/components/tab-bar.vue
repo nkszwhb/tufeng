@@ -16,8 +16,8 @@ export default {
         {id: 1, path: '/home', title: '首页', icon: 'home-o'},
         {id: 2, path: '/dest', title: '目的地', icon: 'aim'},
         {id: 3, path: '/discover', title: '发现', icon: 'eye-o'},
-		{id: 4, path: '/order', title: '订单', icon: 'orders-o'},
-		{id: 5, path: '/mine', title: '我的', icon: 'user-o'}
+        {id: 4, path: '/order', title: '订单', icon: 'orders-o'},
+        {id: 5, path: '/mine', title: '我的', icon: 'user-o'}
       ]
     }
   }
