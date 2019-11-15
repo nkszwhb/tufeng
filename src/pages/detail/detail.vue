@@ -3,7 +3,7 @@
     <app-header title="详情" :hasBack="true"/>
      <app-scroll class="content">
        <banner :bannerItem="bannerList" :number="baseList.product_old_id"/>
-       <introduction :data="infoList"/>
+       <introduction :data="detailList"/>
      </app-scroll>
   </div>
 </template>
@@ -24,12 +24,13 @@ export default {
       languageList: state=>state.Detail.languageData,
       itineraryList: state=>state.Detail.itineraryData,
       bannerList: state=>state.Detail.banner,
+      detailList: state=>state.Detail.detailData,
     })
   },
 	created(){
 		// 请求初始化数据
     this.$store.dispatch('Detail/requestDetailData');	
-    // console.log(this.baseList.product_old_id);
+    console.log(this.detailList);
     	
 	}
 }

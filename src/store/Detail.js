@@ -7,7 +7,8 @@ const state = {
     infoData:{},
     languageData:[],
     itineraryData:[],
-    banner:[]
+    banner:[],
+    detailData:{}
 };
 const mutations = {
     setBaselData(state,value){
@@ -24,6 +25,9 @@ const mutations = {
     },
     setbanner(state,value){
       state.banner=value;
+    },
+    setdetailData(state,value){
+      state.detailData=value;
     }
 };
 const actions = {
@@ -38,11 +42,15 @@ const actions = {
         const itineraryData = itinerary;
         let banner = (baseData.media.extra).map((item, index)=>( item.url));
         banner.unshift(baseData.media.image_url);
+        const detailData = {
+          'price':infoData.product_price_display.quad_cny
+        }
         context.commit('setBaselData',baseData);
         context.commit('setInfoData',infoData);
         context.commit('setLanguageData',languageData);
         context.commit('setItineraryData',itineraryData);
         context.commit('setbanner',banner);
+        context.commit('setdetailData',detailData);
     }else{
       // 失败了
       throw new Error(result.message);
