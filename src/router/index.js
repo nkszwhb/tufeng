@@ -29,6 +29,18 @@ const routes = [
 	  path: '/mine',
 	  component: ()=>import('../pages/mine/mine'),
 	},
+	{
+	  path: '/login',
+	  component: ()=>import('../pages/login/Login'),
+	},
+	{
+	  path: '/register',
+	  component: ()=>import('../pages/register/Register'),
+	},
+	{
+		path: '/findCode',
+		component:()=>import('../pages/register/Find-code')
+	},
 	homeRouter,
 	{
 		path: '/404',
