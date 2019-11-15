@@ -42,9 +42,20 @@ const actions = {
         const itineraryData = itinerary;
         let banner = (baseData.media.extra).map((item, index)=>( item.url));
         banner.unshift(baseData.media.image_url);
+        let tags = [];
+        let discountTags = {};
+        // discountTags = {};
+        tags = baseData.tags;
+        // tags = tags.slice(1);
+        discountTags = tags.shift();
         const detailData = {
           'price':infoData.product_price_display.quad_cny,
-          'productName':baseData.name
+          'productName':baseData.name,
+          tags,
+          'orderNum':baseData.number_of_order,
+          'discountTagsName':discountTags.name,
+          'startCity':baseData.departure_city_name[0].departure_city_name,
+          'endCity':baseData.return_city_name
         }
         context.commit('setBaselData',baseData);
         context.commit('setInfoData',infoData);
