@@ -1,9 +1,7 @@
 <template>
   <div class="introduction">
-      <span class="price">￥{{data.product_price_display.quad_cny}}起</span>
-      <div class="product-name">
-          
-      </div>
+      <span class="price">￥{{data.price}}起</span>
+      <div class="product-name">{{data.productName}}</div>
   </div>
 </template>
 
@@ -13,11 +11,11 @@ export default {
         data:{
             type:Object,
             required: true,
-            default:()=>({})
+            // default:()=>({})
         }
     },
     created(){
-        console.log(this.infoList);
+        // console.log(this.infoList);
         
     }
 }
@@ -31,5 +29,9 @@ export default {
     height:22px;
     color:#fc8517;
     font-weight: bold;
+    display: inline-block;
+    text-align: end;
+    padding-right:20px;
+    box-sizing: border-box;
 }
 </style>
