@@ -1,6 +1,9 @@
 <template>
   <div class="introduction">
       <span class="price">￥{{data.product_price_display.quad_cny}}起</span>
+      <div class="product-name">
+          
+      </div>
   </div>
 </template>
 
