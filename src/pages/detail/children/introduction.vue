@@ -1,6 +1,7 @@
 <template>
   <div class="introduction">
       <span class="price">￥{{data.price}}起</span>
+      <div class="product-name">{{data.productName}}</div>
   </div>
 </template>
 

@@ -43,7 +43,8 @@ const actions = {
         let banner = (baseData.media.extra).map((item, index)=>( item.url));
         banner.unshift(baseData.media.image_url);
         const detailData = {
-          'price':infoData.product_price_display.quad_cny
+          'price':infoData.product_price_display.quad_cny,
+          'productName':baseData.name
         }
         context.commit('setBaselData',baseData);
         context.commit('setInfoData',infoData);
