@@ -5,6 +5,44 @@ body,
 	height: 100%;
 }
 
+.page-wrap {
+	width: 100%;
+	height: 100%;
+	background: #fff;
+}
+
+.page-wrap>.page-wrap {
+	z-index: 100;
+	position: absolute;
+}
+// 有底部的页面
+.page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 49px;
+	width: 100%;
+	background: #fff;
+// 没有底部的页面
+	&.subpage {
+		bottom: 0;
+		z-index: 100;
+	}
+// 动画进来
+	&.modal-page {
+		bottom: 0;
+		z-index: 100;
+	}
+// 有头部
+	.content {
+		position: absolute;
+		top: 49px;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+	}
+}
+
 .border-top {
 	position: relative;
 }
@@ -139,44 +177,6 @@ body,
 }
 
 
-.page-wrap {
-	width: 100%;
-	height: 100%;
-	background: #fff;
-}
-
-.page-wrap>.page-wrap {
-	z-index: 100;
-	position: absolute;
-}
-
-.page {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 49px;
-	width: 100%;
-	background: #fff;
-
-	&.subpage {
-		bottom: 0;
-		z-index: 100;
-	}
-
-	&.modal-page {
-		bottom: 0;
-		z-index: 100;
-	}
-
-	.content {
-		position: absolute;
-		top: 44px;
-		left: 0;
-		bottom: 0;
-		width: 100%;
-	}
-}
-
 .right-btn {
 	position: absolute;
 	right: 0;
@@ -186,25 +186,22 @@ body,
 	line-height: 44px;
 }
 
-.text-overflow {
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
+
 
 
 
 .form-group {
 	@extend .border-bottom;
 	background: #fff;
-	line-height: 40px;
-	height: 40px;
+	line-height: 55px;
+	height: 55px;
 	display: flex;
 	align-items: center;
-
-	.form-contrl {
-		padding: 0;
-		padding: 0 10px;
+	margin:0 20px;
+	padding: 12px 0;
+	box-sizing: border-box;
+	.form-control {
+		padding: 4px 12px;
 		line-height: 40px;
 		height: 40px;
 		outline: none;
@@ -217,17 +214,22 @@ body,
 	.form-tip {
 		height: 30px;
 		width: 100px;
-		background: #F5053D;
+		background: #0090f2;
 		margin-right: 10px;
 		border: 1px solid #ddd;
 		color: #fff;
 		text-align: center;
 		line-height: 30px;
 		border-radius: 5px;
-
+		font-size: 14px;
 		&.disabled {
-			background: rgba($color: #F5053D, $alpha: 0.7);
+			background: rgba($color: #d6d6d6, $alpha: 0.7);
+			color: #fff;
 		}
+	}
+	.login-icon{
+		font-size: 20px;
+		color: #d6d6d6;
 	}
 }
 
@@ -242,10 +244,14 @@ body,
 	border-radius: 5px;
 }
 
-.alert-info {
-	text-align: center;
-	margin: 10px;
-	font-size: 14px;
-	color: #1989fa;
-	padding: 10px;
+.sign-btn{
+	margin:20px 10px;
+	width: 350px;
+	height: 48px;
+	background: #0090f2;
+	border: none;
+	border-radius: 7px;
+	font-size: 18px;
+	color: #fff;
 }
+

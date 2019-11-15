@@ -13,11 +13,11 @@ export default {
   data(){
     return {
       tabList: [
-        {id: 1, path: '/home', title: '首页', icon: 'home-o'},
-        {id: 2, path: '/dest', title: '目的地', icon: 'aim'},
-        {id: 3, path: '/discover', title: '发现', icon: 'eye-o'},
-		{id: 4, path: '/order', title: '订单', icon: 'orders-o'},
-		{id: 5, path: '/mine', title: '我的', icon: 'user-o'}
+        {id: 1, path: '/home', title: '首页', icon: 'wap-home'},
+        {id: 2, path: '/dest', title: '目的地', icon: 'location'},
+        {id: 3, path: '/discover', title: '发现', icon: 'eye'},
+		{id: 4, path: '/order', title: '订单', icon: 'column'},
+		{id: 5, path: '/mine', title: '我的', icon: 'manager'}
       ]
     }
   }
@@ -39,6 +39,7 @@ export default {
     justify-content: center;
     flex: 1;
     text-align: center;
+    color: #d6d6d6;
     .icon{
       font-size: 26px;
       margin-bottom: 3px;
