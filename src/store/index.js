@@ -7,6 +7,7 @@ import PersonInfo from './PersonInfo'
 import Home from './Home'
 import Discover from "./Discover"
 import Detail from './Detail'
+import Destination from './Destination'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -42,6 +43,7 @@ export default new Vuex.Store({
     PersonInfo,
     Home,
     Discover,
-    Detail
+    Detail,
+    Destination
   }
 })

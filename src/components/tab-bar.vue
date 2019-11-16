@@ -14,7 +14,7 @@ export default {
     return {
       tabList: [
         {id: 1, path: '/home', title: '首页', icon: 'wap-home'},
-        {id: 2, path: '/dest', title: '目的地', icon: 'location'},
+        {id: 2, path: '/dest/', title: '目的地', icon: 'location'},
         {id: 3, path: '/discover', title: '发现', icon: 'eye'},
 		{id: 4, path: '/order', title: '订单', icon: 'column'},
 		{id: 5, path: '/mine', title: '我的', icon: 'manager'}

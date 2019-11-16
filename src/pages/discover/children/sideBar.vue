@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { Sidebar, SidebarItem } from 'vant';
+
 import sideBarList from './sideBarList'
 export default {
     data() {
@@ -22,8 +22,6 @@ export default {
         };
     },
     components: {
-        [Sidebar.name]: Sidebar,
-        [SidebarItem.name]: SidebarItem,
         sideBarList
     },
     props: {

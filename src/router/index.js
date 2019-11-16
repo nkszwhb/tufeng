@@ -14,8 +14,10 @@ const routes = [
 	  component: ()=>import('../pages/home/home'),
 	},
 	{
-	  path: '/dest',
-	  component: ()=>import('../pages/dest/dest'),
+		path: '/dest/',
+		alias:'/dest/:city',
+		props:true,
+		component: ()=>import('../pages/dest/dest'),
 	},
 	{
 	  path: '/discover',

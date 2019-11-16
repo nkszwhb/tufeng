@@ -4,7 +4,8 @@ import Http from '../utils/Http'
 
 const state = {
     bannerData:[] ,
-    hotDest:[]
+    hotDest:[],
+    searchList:[],
 };
 const mutations = {
     setbannerData(state,value){
@@ -12,6 +13,9 @@ const mutations = {
     },
     sethotDest(state,value){
       state.hotDest=value;
+    },
+    setsearchList(state,value){
+      state.searchList = value;
     }
 };
 const actions = {
@@ -34,6 +38,16 @@ const actions = {
       throw new Error(result.message);
     }
   },
+  async requestSearchList(context){
+    const {data:result} = await Http.get(api.SEARCH_LIST_API);
+    if(result.code == 1){
+      const searchList = result.data;
+      context.commit('setsearchList',searchList)
+    }
+    else{
+      throw new Error(result.message);
+    }
+  }
 
 };
 const getters = {
