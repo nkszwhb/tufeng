@@ -30,7 +30,7 @@ export default {
     font-size: 14px;
     letter-spacing: normal;
     word-spacing: normal;
-    // zoom: 1;
+    zoom: 1;
     margin-right: 10px;
     width: 105px;
     height: 139px;

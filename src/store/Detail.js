@@ -8,7 +8,8 @@ const state = {
     languageData:[],
     itineraryData:[],
     banner:[],
-    detailData:{}
+    detailData:{},
+    recommendData:{}
 };
 const mutations = {
     setBaselData(state,value){
@@ -28,6 +29,9 @@ const mutations = {
     },
     setdetailData(state,value){
       state.detailData=value;
+    },
+    setrecommendData(state,value){
+      state.recommendData=value;
     }
 };
 const actions = {
@@ -40,29 +44,52 @@ const actions = {
         const infoData = info;
         const languageData = language;
         const itineraryData = itinerary;
-        let banner = (baseData.media.extra).map((item, index)=>( item.url));
+        let banner = baseData.media.extra
+        banner = banner.map((item, index)=>( item.url));
         banner.unshift(baseData.media.image_url);
         let tags = [];
         let discountTags = {};
-        // discountTags = {};
+        let endCity = (baseData.return_city_name).map((item, index)=>({
+          endCityItem: item.return_city_name,
+          id: index
+        }));
+        let startCity = (baseData.departure_city_name).map((item, index)=>({
+          startCityItem: item.departure_city_name,
+          id: index
+        }));
+        let languageGroup = languageData.map((item, index)=>({
+          languageItem: item.name,
+          id: index
+        }));
         tags = baseData.tags;
-        // tags = tags.slice(1);
         discountTags = tags.shift();
+
         const detailData = {
-          'price':infoData.product_price_display.quad_cny,
+          'price':infoData.product_price_display.double_cny,
           'productName':baseData.name,
           tags,
           'orderNum':baseData.number_of_order,
           'discountTagsName':discountTags.name,
-          'startCity':baseData.departure_city_name[0].departure_city_name,
-          'endCity':baseData.return_city_name
-        }
+          startCity,
+          endCity,
+          'days':baseData.duration,
+          'attractions':baseData.product_info_statistics.attraction_num,
+          'selfPay':baseData.product_info_statistics.ownexpense_num,
+          'languageData':languageGroup
+        };
+
+        const recommendData = {
+          'briefDescription':infoData.brief_description,
+          'travelTips':infoData.travel_tips
+        };
+
         context.commit('setBaselData',baseData);
         context.commit('setInfoData',infoData);
         context.commit('setLanguageData',languageData);
         context.commit('setItineraryData',itineraryData);
         context.commit('setbanner',banner);
         context.commit('setdetailData',detailData);
+        context.commit('setrecommendData',recommendData);
     }else{
       // 失败了
       throw new Error(result.message);

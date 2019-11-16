@@ -1,6 +1,6 @@
 <template>
   <div class="myUserInfo">
-      <h1>wode</h1>
+      <h1>我的</h1>
   </div>
 </template>
 

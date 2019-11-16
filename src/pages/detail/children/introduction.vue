@@ -27,13 +27,18 @@
                   <div class="product-city-group">
                       <div class="product-city-name">
                           <span>出发</span>
-                          <span class="start-city">{{data.startCity}}</span>
+                          <span class="start-city">
+                              <i v-for="item in data.startCity">
+                                 {{item.startCityItem}}
+                             </i>
+                          </span>
                       </div>
                       <div class="product-city-name">
                           <span>结束</span>
                           <span class="end-city">
-                              {{data.endCity[0].return_city_name}}
-                              {{data.endCity[1].return_city_name}}
+                             <i v-for="item in data.endCity">
+                                 {{item.endCityItem}}
+                             </i>
                           </span>
                       </div>
                   </div>
@@ -42,21 +47,23 @@
           <div class="serve-language">
             <span class="first">行程</span>
             <span style="color: #2B88ED; width: 30%" >
-					7天
+					{{data.days}}天
 			</span>
             <span class="second">景点</span>
             <span style="color: #2B88ED; width: 30%" >
-					23个景点
+					{{data.attractions}}个景点
 			</span>
           </div>
           <div class="serve-language">
             <span class="first">自费</span>
             <span style="color: #2B88ED; width: 30%" >
-					16项自费
+					{{data.selfPay}}项自费
 			</span>
             <span class="second">服务语言</span>
             <span style="color: #2B88ED; width: 30%" >
-				中文 英语
+				<i v-for="item in data.languageData">
+                    {{item.languageItem}}
+                </i>
 			</span>
           </div>
       </div>
@@ -69,11 +76,11 @@ export default {
         data:{
             type:Object,
             required: true,
-            // default:()=>({discountTags:{}})
+            default:()=>({endCity:[]})
         }
     },
     created(){
-        console.log(this.data.discountTagsName);
+        // console.log(this.data.producInfo);
         
     }
 }
@@ -187,10 +194,14 @@ export default {
                             display: block;
                         }
                         .start-city{
+                            text-align: left;
+                            flex: 1;
                             padding-left:12px;
                             color: #363636;
                         }
                         .end-city{
+                            text-align: left;
+                            flex: 1;
                             padding-left:12px;
                             color: #363636;
                         }
