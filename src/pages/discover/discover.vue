@@ -19,8 +19,8 @@ export default{
 	computed: {
 		...mapState({
 			MenuList: state=>state.Discover.menuData,
-    	})
-  	},
+    })
+  },
 	created(){
 		// 请求初始化数据
 		this.$store.dispatch('Discover/requestDiscoverMenu');		

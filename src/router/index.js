@@ -14,8 +14,10 @@ const routes = [
 	  component: ()=>import('../pages/home/home'),
 	},
 	{
-	  path: '/dest',
-	  component: ()=>import('../pages/dest/dest'),
+		path: '/dest/',
+		alias:'/dest/:city',
+		props:true,
+		component: ()=>import('../pages/dest/dest'),
 	},
 	{
 	  path: '/discover',
@@ -24,6 +26,10 @@ const routes = [
 	{
 	  path: '/order',
 	  component: ()=>import('../pages/order/order'),
+	},
+	{
+		path: '/category',
+		component: ()=>import('../pages/category/category'),	
 	},
 	{
 	  path: '/mine',
@@ -42,6 +48,10 @@ const routes = [
 	  ]
 	},
 	{
+		path: '/purchase',
+		component: ()=>import('../pages/purchase/purchase')
+	},
+	{
 	  path: '/login',
 	  component: ()=>import('../pages/login/Login'),
 	},
@@ -56,7 +66,7 @@ const routes = [
 	homeRouter,
 	{
 		path:'/detail/:id',
-		props: true,
+		props:true,
 		component:()=>import('../pages/detail/detail')
 	},
 	{

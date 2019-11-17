@@ -1,3 +1,19 @@
+
+
+
+/*
+	分类搜索api
+	参数： 
+		customCurrency=
+		custom_tag=	
+		page=1 
+		​pageSize=10  
+		​product_line=boutique 
+        样例 ?customCurrency=CNY&custom_tag=&page=1&pageSize=10&product_line=activity
+*/
+const CATEGORY_API = '/api/search/category';
+
+
 /*
 #### 发送验证码
 
@@ -103,14 +119,18 @@ const GOODS_LIST_API = '/api/homepage/banner/v1.5.0 ';
 商品详情接口
 参数：id
 */
-const GOODS_DETAIL_API = '/api/product/101477460';
+const GOODS_DETAIL_API = '/api/product';
 // const GOODS_DETAIL_API = '/api/product';
 
 
 // 发现页面接口
 const MENU = '/api/article/menu';
 
+//搜索列表
+const SEARCH_LIST_API = '/api/destination/v1'
 
+// 目的地数据
+const DESTINATION_API = '/api/destination/default'
 
 export default{
   SEND_CODE,
@@ -122,7 +142,10 @@ export default{
   WEIBO_LOGIN,
   GOODS_LIST_API,
   MENU,
-  GOODS_DETAIL_API
-
+  GOODS_DETAIL_API,
+  CATEGORY_API,
+  FIND_CODE,
+  SEARCH_LIST_API,
+  DESTINATION_API
 }
 

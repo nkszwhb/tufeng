@@ -36,7 +36,7 @@ const mutations = {
 };
 const actions = {
   async requestDetailData(context,id){
-    const {data: result} = await Http.get(api.GOODS_DETAIL_API,{id}); 
+    const {data: result} = await Http.get(api.GOODS_DETAIL_API+ '/' + id); 
     //判断请求的结果
     if(result.code === 1){
         const {base,info,language,itinerary} = result.data;

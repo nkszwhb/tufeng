@@ -2,10 +2,9 @@
 <!-- <div> -->
 	<div class="page" id="home">
 		<app-scroll class="content">
-
 			<banner :list="bannerList"/>
 			<div class="home-search">
-				<div class="search-input">
+				<div class="search-input" @click="goSearch">
 					<van-icon class="search-icon" name="search" />
 					<span class="search-tip">城市、景点、产品、关键字</span>
 				</div>
@@ -44,12 +43,27 @@ export default{
 		destHot,
 		newProduct
 	},
+
+	data(){
+		return{
+			
+		}
+	},
+		
 	computed: {
 		...mapState({
 			bannerList: state=>state.Home.bannerData,
 			hotDestList:state=>state.Home.hotDest
-    	})
-  	},
+		})
+
+	},
+
+	methods:{
+		goSearch(){
+			this.$center.$emit('togsearch',true)
+		}
+	},
+
 	created(){
 		// 请求初始化数据
 		this.$store.dispatch('Home/requestGoodsListData');
@@ -63,52 +77,8 @@ export default{
 .content{
 	top:0;
 }
-.home-search{
-	position: absolute;
-    top: 16px;
-    width: 100%;
-	padding:0 24px;
-	box-sizing: border-box;
-	z-index: 999;
-	display: flex;
-    align-items: center;
-	justify-content: space-around;
-	.search-input{
-		height: 33px;
-		line-height: 33px;
-		display: flex;
-		flex: 1;
-		justify-content: space-between;
-		border-radius: 20px;
-		background-color: #fff;
-		box-shadow: 0 2px 20px rgba(134,131,131,.6);
-		.search-icon{
-			display: block;
-			color: #A1A1A1;
-			padding: 1px 10px;
-			font-size: 24px;
-			height:100%;
-			line-height: 33px;
-		}
-		.search-tip{
-			flex: 1;
-			display: block;
-			margin-right: 10px;
-			font-size: 15px;
-			color: #A1A1A1;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
-	}
-	.hot-phone{
-		padding-left: 12px;
-		color: #FFF;
-		font-size: 24px;
-		line-height: 24px;
-		display: block;
-	}
-}
+
+
 .home-page-activity{
 	padding: 0 24px;
 	height: auto;
