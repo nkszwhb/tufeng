@@ -155,7 +155,7 @@ export default {
 		cageAction(type){
 			sessionStorage.setItem('category',JSON.stringify({
 				'keyword':this.defData.name,
-				'product_line':type
+				'product_line':type == 'ticket' ? 'tickets' : type,
 			}));
 			this.$router.push('/category')
 			
