@@ -49,6 +49,7 @@ export default {
 			.use(IndexAnchor)
 			.use(Tab)
 			.use(Tabs)
+			.use(Toast)
 			.use(ActionSheet)
 			.use(Popup)
 			.use(Loading)

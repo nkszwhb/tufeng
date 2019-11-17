@@ -3,17 +3,17 @@
 		<app-header title="购买" :hasBack="true" />
 		<div class="center">
 
-			<ShopCard />
+			<ShopCard :personNum='personNum'/>
 
 			<van-collapse v-model="activeName" accordion>
 				<van-collapse-item title="出行时间" name="1">
-					<div slot="value">请选择出行时间</div>
+					<div slot="value">{{time}}</div>
 					<div slot="default">
-						<van-datetime-picker title="出行时间" :visible-item-count=3 :swipe-duration=2000 v-model="currentDate" :min-date="minDate" :max-date="maxDate" type="date" />
+						<van-datetime-picker @cancel="cancelPickTime" @confirm="confirmPickTime" title="出行时间" :visible-item-count=3 :swipe-duration=2000 v-model="currentDate" :min-date="minDate" :max-date="maxDate" type="date" />
 					</div>
 				</van-collapse-item>
 				<van-collapse-item title="出行人数" name="2">
-					<div slot="value">请选择出行人数</div>
+					<div slot="value">{{personNum}}人</div>
 					<div slot="default">
 						<van-cell title="请选择人数">
 							<template slot="default">
@@ -24,7 +24,7 @@
 				</van-collapse-item>
 				
 				<!-- //添加出行人 -->
-				<van-collapse-item title="出行人信息" name="4">
+				<van-collapse-item title="出行人信息" name="3">
 					<div slot="default">
 						<p>联系人</p>
 						<van-contact-card :type="cardType" :name="currentContact.name" :tel="currentContact.tel" @click="showList = true" />
@@ -40,7 +40,7 @@
 			</van-collapse>
 
 		</div>
-		<div class="purchase-btn">
+		<div class="purchase-btn" @click="addOrder">
 			订购
 		</div>
 
@@ -58,7 +58,8 @@
 
 <script>
 	import {
-		Dialog
+		Dialog,
+		Toast
 	} from 'vant';
 	import ShopCard from './children/ShopCard'
 	export default {
@@ -88,9 +89,25 @@
 			currentContact() {
 				const id = this.chosenContactId;
 				return id !== null ? this.list.filter(item => item.id === id)[0] : {};
+			},
+			time(){
+				if(this.currentDate == ''){
+					return '请选择出行时间';
+				}else{
+					return this.currentDate.toLocaleDateString();
+				}
 			}
 		},
 		methods: {
+			//取消时间选择
+			cancelPickTime(){
+				this.currentDate = '';
+				this.activeName = '';
+			},
+			//确认时间选择
+			confirmPickTime(){
+				this.activeName = '2';
+			},
 			// 添加联系人
 			onAdd() {
 				this.editingContact = {
@@ -155,6 +172,21 @@
 						});
 						break;
 				}
+			},
+			//添加订单
+			addOrder(){
+				if(this.currentDate == ''){
+					Toast('请选择出行时间');
+					return;
+				}else if(this.list.length ==0){
+					Toast('请添加出行人信息');
+					return;
+				}else if(this.personNum != this.list.length){
+					Toast('出行人数信息数和人数一致！');
+					return;
+				}
+				
+				
 			}
 		}
 	}
