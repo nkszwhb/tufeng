@@ -1,5 +1,21 @@
 
 
+/*
+订单创建
+
+methods：post
+url:'/api/order/add'
+*/
+const ORDER_ADD = '/api/order/add';
+
+/*
+订单创建
+
+methods：post
+url:'/api/order/find_order'
+*/
+const FIND_ORDER = '/api/order/find_order';
+
 
 /*
 	分类搜索api
@@ -146,6 +162,8 @@ export default{
   CATEGORY_API,
   FIND_CODE,
   SEARCH_LIST_API,
-  DESTINATION_API
+  DESTINATION_API,
+  ORDER_ADD,
+  FIND_ORDER
 }
 

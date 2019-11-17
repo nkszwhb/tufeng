@@ -44,7 +44,7 @@ export default {
                 console.log('退出成功');
                 let result =  mineService.requestOutLogin();
                 this.$store.dispatch('handleLogin',false);
-                this.$router.push('/mine/editUserInfo');
+                this.$router.replace('/login');
             }).catch(() => {
             // on cancel
             });
