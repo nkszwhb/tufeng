@@ -78,6 +78,7 @@ const actions = {
 		//美元标准
 		searchFilter.priceMin && (searchTag.priceMin = searchFilter.priceMin/7);
 		searchFilter.priceMax && (searchTag.priceMax = searchFilter.priceMax/7);
+		searchFilter.keyword && (searchFilter.keyword != '') && (searchTag.keyword = searchFilter.keyword);
 		searchFilter.minDay && (searchFilter.minDay != '' || searchFilter.maxDay != '') && (searchTag.duration_range = searchFilter.minDay+'_'+searchFilter.maxDay);
 		searchFilter.custom_tag && (searchFilter.custom_tag.length != 0 ) && (searchTag.custom_tag = searchFilter.custom_tag.join());
 		searchFilter.product_quality && searchFilter.product_quality != '' && (searchTag.product_quality = searchFilter.product_quality);

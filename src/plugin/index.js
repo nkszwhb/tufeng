@@ -10,15 +10,24 @@ import {
 	Radio,
 	Checkbox,
 	CheckboxGroup,
+	Cell,
+	CellGroup,
 	Button,
 	Tab,
 	Tabs,
-	Cell,
-	CellGroup,
 	IndexBar,
 	IndexAnchor,
 	Sidebar,
-	SidebarItem
+	SidebarItem,
+	Popup,
+	Loading,
+	Collapse,
+	CollapseItem,
+	Stepper,
+	ContactCard,
+	ContactList,
+	ContactEdit,
+	SwipeCell
 } from 'vant'
 
 
@@ -47,8 +56,17 @@ export default {
 			.use(Tabs)
 			.use(Sidebar)
 			.use(SidebarItem)
-			.use(ActionSheet);
-
+			.use(ActionSheet)
+			.use(Toast)
+			.use(Popup)
+			.use(Loading)
+			.use(Collapse)
+			.use(CollapseItem)
+			.use(Stepper)
+			.use(ContactCard)
+			.use(ContactList)
+			.use(ContactEdit)
+			.use(SwipeCell);
 		Vue.prototype.$Toast = Toast;
 		// 使用自定义的滚动组件
 		Vue.component(AppScroll.name, AppScroll);

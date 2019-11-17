@@ -153,10 +153,11 @@ export default {
 	methods:{
 		// 分类和必玩
 		cageAction(type){
-			sessionStorage.setItem('category',JSON.stringify({
-				'keyword':this.defData.name,
-				'product_line':type
-			}));
+			let category ={'keyword':this.defData.name};
+			if(type != 'custom'){
+				category.product_line = (type == 'ticket' ? 'tickets' : type);
+			}
+			sessionStorage.setItem('category',JSON.stringify(category));
 			this.$router.push('/category')
 			
 		},
