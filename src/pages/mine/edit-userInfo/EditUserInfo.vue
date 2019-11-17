@@ -14,7 +14,7 @@
                 </van-cell-group>
             </div>
         </app-scroll>
-        <div class="logout border-top">
+        <div class="logout border-top" v-if="showCom">
             <h1 @click="logoutAction">退出登录</h1>
         </div>
   </div>
@@ -22,12 +22,19 @@
 
 <script>
 import { Cell, CellGroup,Dialog}from 'vant';
+import mineService from '../../../services/mineService'
+
 export default {
     components: {
         [Cell.name]: Cell,
         [CellGroup.name]: CellGroup,
         // [Dialog.Component.name]: Dialog.Component
     },
+    computed:{
+		 showCom(){
+	      return this.$store.state.isLogin
+	    }
+	},
     methods:{
         logoutAction(){
             Dialog.confirm({
@@ -35,11 +42,20 @@ export default {
             message: '您确定退出当前帐号么?'
             }).then(() => {
                 console.log('退出成功');
-                
+                let result =  mineService.requestOutLogin();
+                this.$store.dispatch('handleLogin',false);
+                this.$router.push('/mine/editUserInfo');
             }).catch(() => {
             // on cancel
             });
         },
+        toEdit(){
+            if(this.showCom){
+                this.$router.push('/mine/myUserInfo');
+            }else{
+                 this.$router.replace(`/login`);
+            }
+        }
     }
 }
 </script>

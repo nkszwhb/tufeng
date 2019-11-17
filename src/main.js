@@ -3,12 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import plugin from './plugin'
-
+import 'lib-flexible/flexible'
 import './style/common.scss'
 import 'lib-flexible/flexible'
 
 Vue.config.productionTip = false
-
+  
 Vue.use(plugin);
 
 new Vue({

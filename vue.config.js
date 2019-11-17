@@ -3,7 +3,7 @@ module.exports = {
     open: true,
     proxy: {
       '/api/user': {
-        target: 'http://localhost:9000'
+        target: 'http://10.20.152.29:5000'
       },
       '/api': {
         target: 'https://app.toursforfun.com'

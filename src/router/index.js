@@ -33,15 +33,25 @@ const routes = [
 		  path: 'editUserInfo',
 		  props: true,
 		  component: ()=>import('../pages/mine/edit-userInfo/EditUserInfo'),
-		  children:[
-			{
-				path: 'myUserInfo',
-				props: true,
-				component: ()=>import('../pages/mine/edit-userInfo/MyUserInfo')
-			}
-		  ]
+		},
+		{
+			path: 'myUserInfo',
+			props: true,
+			component: ()=>import('../pages/mine/edit-userInfo/MyUserInfo')
 		}
 	  ]
+	},
+	{
+	  path: '/login',
+	  component: ()=>import('../pages/login/Login'),
+	},
+	{
+	  path: '/register',
+	  component: ()=>import('../pages/register/Register'),
+	},
+	{
+		path: '/findCode',
+		component:()=>import('../pages/register/Find-code')
 	},
 	homeRouter,
 	{

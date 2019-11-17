@@ -4,7 +4,8 @@
       <router-view></router-view>
     </keep-alive>
     <tab-bar></tab-bar>
-	
+
+
   </div>
 </template>
 <script>
@@ -14,10 +15,8 @@ export default {
   components: {
     [TabBar.name]: TabBar,
   },
-  data(){
-    return {
-
-    }
+  created(){
+		this.$store.dispatch('checkLogin');
   }
 }	
 </script>
