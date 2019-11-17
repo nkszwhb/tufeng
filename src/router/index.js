@@ -26,6 +26,10 @@ const routes = [
 	  component: ()=>import('../pages/order/order'),
 	},
 	{
+		path: '/category',
+		component: ()=>import('../pages/category/category'),	
+	},
+	{
 	  path: '/mine',
 	  component: ()=>import('../pages/mine/mine'),
 	  children: [
@@ -40,6 +44,10 @@ const routes = [
 			component: ()=>import('../pages/mine/edit-userInfo/MyUserInfo')
 		}
 	  ]
+	},
+	{
+		path: '/purchase',
+		component: ()=>import('../pages/purchase/purchase')
 	},
 	{
 	  path: '/login',

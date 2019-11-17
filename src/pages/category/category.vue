@@ -106,6 +106,11 @@
 				</van-index-bar>
 			</van-radio-group>
 		</van-action-sheet>	
+		
+		<van-popup :close-on-click-overlay='false' v-model="isLoading" class="loading">
+			<van-loading size="36px" vertical>加载中...</van-loading>
+		</van-popup>
+		
 	</div>	
 </template>
 
@@ -116,10 +121,10 @@
 	export default{
 		data(){
 			return{
+				
 				keyword: '美国',
 				showBigItem: false,
 				choseTimeShow:false,
-				
 				choseStartShow: false,
 				choseStopShow: false,
 				
@@ -214,10 +219,18 @@
 			},
 		},
 		created(){
+			
+			let category = JSON.parse(sessionStorage.getItem('category')) || { product_line:'boutique'};
+			console.log(category);
+			if(category.product_line){
+				this.keyword = this.product_arr.filter(item=>{return item.value == category.product_line})[0].text;
+			}else if(category.keyword){
+				this.keyword = category.keyword;
+			}
 			this.$store.dispatch('Category/getCategory',{
 				page: 1,
 				pageSize: 10,
-				product_line: 'boutique'
+				...category
 			});		
 		},
 		methods:{
@@ -253,8 +266,7 @@
 				}
 				this.choseStartTime = !this.choseStartTime;
 			},
-			changeProductLine(...rest){
-				console.log(rest);
+			changeProductLine(){
 				this.$store.dispatch('Category/getCategory', this.searchFilter);	
 			},
 			
@@ -309,8 +321,8 @@
 				}
 				this.choseStopShow = false;
 			},
-			changeStopCitybox(...rest){
-				console.log('group',rest);
+			changeStopCitybox(){
+				
 			},
 			choseStopCity(){
 				this.choseStopShow = true;
@@ -331,8 +343,12 @@
 	height: 100%;
 	width: 100%;
 	background: #eee;
+	z-index: 100;
 	display: flex;
 	flex-direction: column;
+	.loading{
+		background: transparent !important;
+	}
 	.categorylist{
 		flex: 1;
 		width: 100%;
