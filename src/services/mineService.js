@@ -36,7 +36,6 @@ export const requestLoginByPassword = async(tel, psw)=>{
 // 验证码登录
 export const requestLoginByCode = async (tel)=>{
   let result = await Http.post(api.LOGIN_API, {tel, type: 'code'});
-  console.log(result);
   if(result.data.code === 0){
     return null;
   }else{

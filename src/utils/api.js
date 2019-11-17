@@ -124,7 +124,11 @@ const GOODS_DETAIL_API = '/api/product/101577807';
 // 发现页面接口
 const MENU = '/api/article/menu';
 
+//搜索列表
+const SEARCH_LIST_API = '/api/destination/v1'
 
+// 目的地数据
+const DESTINATION_API = '/api/destination/default'
 
 export default{
   SEND_CODE,
@@ -137,6 +141,9 @@ export default{
   GOODS_LIST_API,
   MENU,
   GOODS_DETAIL_API,
-  CATEGORY_API
+  CATEGORY_API,
+  FIND_CODE,
+  SEARCH_LIST_API,
+  DESTINATION_API
 }
 
