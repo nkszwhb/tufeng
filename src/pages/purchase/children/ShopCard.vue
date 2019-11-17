@@ -25,7 +25,7 @@ export default{
 		}
 	},
 	props:{
-		personNum:String
+		personNum: [Number,String]
 	}
 }
 </script>
