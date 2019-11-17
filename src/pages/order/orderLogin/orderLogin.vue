@@ -9,7 +9,7 @@
 	</van-tabs>
 
 	<ul>
-      <li v-for="(item,index) in data" >
+      <li v-for="item in data" :key="item.id">
 		  <div class="title">
 			  <span class="order-id">{{item.orderid}}</span>
 			  <span class="order-status">待支付</span>
@@ -28,17 +28,15 @@
 		  	<div class="pay">
 				实付款:<span>￥{{item.price}}</span>
 			</div>
-			<div class="button" @click="payAction">
+			<div class="button" @click="payAction(item.orderid)">
 				<span>立即支付</span>
 			</div>
       </li>
     </ul>
-	<!-- <button class="sign-btn" @click="outLoginAction">退出</button> -->
 </div>
 </template>
 
 <script>
-import mineService from '../../../services/mineService'
 import Http from '../../../utils/Http'
 import api from '../../../utils/api'
 export default{
@@ -46,26 +44,25 @@ export default{
 		return{
 			data:{},
 			id:'',
-			payedstatus:1//-1 全部 0待付款,1未出行,2待评价,3退款
+			payedstatus:1//0 全部 0待付款,1未出行,2待评价,3退款
 		}
 	},
 	methods:{
-		async payAction(){
+		async payAction(id){
 			console.log(1);
 			
-			let result = await Http.post(api.ORDER_UPDATE,{status:this.payedstatus,id:this.data.orderid}); 
+			let result = await Http.post(api.ORDER_UPDATE,{status:this.payedstatus,id}); 
 
 			let payedData = await Http.get(api.FIND_ORDER);
 			this.data = payedData.data.data;
 			this.$Toast('支付成功!');
-			console.log(result);
 			console.log(this.data);
 			
 		}
 	},
 	created(){
 		(async ()=>{
-			console.log(1);
+			console.log(2);
 			let result = await Http.get(api.FIND_ORDER);
 			this.data = result.data.data;
 			console.log(this.data);
