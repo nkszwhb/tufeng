@@ -55,7 +55,8 @@ const routes = [
 	},
 	homeRouter,
 	{
-		path:'/detail',
+		path:'/detail/:id',
+		props: true,
 		component:()=>import('../pages/detail/detail')
 	},
 	{
