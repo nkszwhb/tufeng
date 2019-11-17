@@ -13,11 +13,14 @@ import {
 	Button,
 	Tab,
 	Tabs,
+	Cell,
+	CellGroup,
 	IndexBar,
 	IndexAnchor,
 	Sidebar,
 	SidebarItem
 } from 'vant'
+
 
 import AppScroll from '../components/app-scroll'
 import AppHeader from '../components/app-header'
@@ -39,6 +42,8 @@ export default {
 			.use(IndexBar)
 			.use(IndexAnchor)
 			.use(Tab)
+			.use(Cell)
+			.use(CellGroup)
 			.use(Tabs)
 			.use(Sidebar)
 			.use(SidebarItem)
