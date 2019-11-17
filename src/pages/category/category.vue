@@ -300,6 +300,7 @@
 				this.searchFilter.service_languages = '';
 				this.searchFilter.page = 1;
 				this.searchFilter.pageSize = 1;
+				this.searchFilter.keyword = '';
 				this.start_city = '出发地',
 				this.StartTime ='自定义出发时间';
 				this.$store.commit('Category/resetDepartureDate');
