@@ -8,8 +8,8 @@
             </div>
             <div class="app-settings">
                 <van-cell-group>
-                    <van-cell class="cell-item" title="系统货币" value="人民币(￥)>" />
-                    <van-cell title="我的账户" value="修改密码、手机号>" is-link to="pages/editUserInfo/myUserInfo"/>
+                    <van-cell class="cell-item" title="系统货币"  :value="showCom ? '人民币(￥)>' : '请登录'" is-link @click="toEdit"/>
+                    <van-cell title="我的账户" :value ="showCom ? '修改密码、手机号>' : '请登录'" is-link @click="toEdit"/>
                      <van-cell title="关于我们" value=">" />
                 </van-cell-group>
             </div>
@@ -45,6 +45,8 @@ export default {
                 let result =  mineService.requestOutLogin();
                 this.$store.dispatch('handleLogin',false);
                 this.$router.push('/mine/editUserInfo');
+                console.log(this.showCom);
+                
             }).catch(() => {
             // on cancel
             });
