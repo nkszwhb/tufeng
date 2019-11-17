@@ -1,5 +1,5 @@
 <template>
-	<div class="categoryItem" :id="data.id">
+	<div class="categoryItem" :id="data.id" @click="godetailAction(data.id_new)">
 		<div class="left">
 			<img :src="data.image">
 			<span>{{data.city_name}}出发</span>
@@ -28,6 +28,11 @@
 		},
 		props:{
 			data: Object
+		},
+		methods:{
+			godetailAction(id){
+				this.$router.push(`/detail/${id}`);
+			}
 		}
 	}
 </script>

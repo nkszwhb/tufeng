@@ -1,5 +1,5 @@
 <template>
-  <div class="dest-item" @click="localAction(itemData.id)">
+  <div class="dest-item" @click="localAction(itemData.id,itemData.name)">
       <img :src="itemData.imgage" alt="">
       <p class="name multiple-ellipsis">{{itemData.name}}</p>
       <p class="price"><span>￥{{itemData.price}}</span>起</p>
@@ -8,16 +8,13 @@
 
 <script>
 export default {
-  // name:'one',
   props:{
     itemData:{},
-    id:String,
-    imgage: String,
-    name:String,
-    price :Number,
   },
   methods:{
-		localAction(id){
+		localAction(id,name){
+      console.log(id,name);
+      
 			this.$router.push(`/detail/${id}`)
 		},
   }

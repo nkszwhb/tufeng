@@ -63,7 +63,6 @@ const actions = {
           }
         })
         // console.log(groupData);
-        console.log(destinData);
         
         
         context.commit('setdetinData',destinData);

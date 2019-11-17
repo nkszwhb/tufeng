@@ -192,6 +192,10 @@ export default {
 		}
 	},
 	created(){
+		
+		if(this.city == ''){
+			this.city = sessionStorage.getItem('city');
+		}
 		// 初始化点击时的数据
 	  this.$store.dispatch('Destination/requestDestination',{name:this.city});
 			

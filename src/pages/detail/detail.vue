@@ -38,7 +38,10 @@ export default {
     introduction,
     recommend,
     travelDetail
-	},
+  },
+  props:{
+    id:String
+  },
   computed: {
     ...mapState({
       baseList: state=>state.Detail.baseData,
@@ -52,7 +55,7 @@ export default {
   },
 	created(){
 		// 请求初始化数据
-    this.$store.dispatch('Detail/requestDetailData');	
+    this.$store.dispatch('Detail/requestDetailData',this.id);	
     // console.log(this.detailList);   	
   }
 }
