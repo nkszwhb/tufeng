@@ -1,17 +1,17 @@
 <template>
 	<div class="shopcard">
 		<div>
-			<img src="https://cdn.tff.bz/f1/windtour/cf/1b/微信图片_20190222165119.jpg?imageView2/1/w/720/h/520/q/100/format/jpg" />
+			<img :src="orderData.pic" />
 			<p class="shopcard-title">
-				【途风高端-私享"豪"体验】洛杉矶空中飞行驾驶体验：美国联邦航空局授权, 专业教官1:1私家教授(可升级获取GoPro全程影像与飞行照片)
+				{{orderData.title}}
 			</p>
 			<p class="price-each">
 				<span class="price-title">单价</span>
-				<span class="price">￥<span>7962.75</span></span>
+				<span class="price">￥<span>{{orderData.price}}</span></span>
 			</p>
 			<p class="price-each">
 				<span class="price-title">总价</span>
-				<span class="price">￥<span>{{7962.75*personNum}}</span></span>
+				<span class="price">￥<span>{{(orderData.price *personNum).toFixed(2)}}</span></span>
 			</p>
 		</div>
 	</div>
@@ -25,7 +25,8 @@ export default{
 		}
 	},
 	props:{
-		personNum: [Number,String]
+		personNum: [Number,String],
+		orderData: Object
 	}
 }
 </script>

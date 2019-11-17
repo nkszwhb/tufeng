@@ -3,13 +3,14 @@
 		<app-header title="购买" :hasBack="true" />
 		<div class="center">
 
-			<ShopCard :personNum='personNum'/>
+			<ShopCard :personNum='personNum' :orderData='orderData' />
 
 			<van-collapse v-model="activeName" accordion>
 				<van-collapse-item title="出行时间" name="1">
 					<div slot="value">{{time}}</div>
 					<div slot="default">
-						<van-datetime-picker @cancel="cancelPickTime" @confirm="confirmPickTime" title="出行时间" :visible-item-count=3 :swipe-duration=2000 v-model="currentDate" :min-date="minDate" :max-date="maxDate" type="date" />
+						<van-datetime-picker @cancel="cancelPickTime" @confirm="confirmPickTime" title="出行时间" :visible-item-count=3
+						 :swipe-duration=2000 v-model="currentDate" :min-date="minDate" :max-date="maxDate" type="date" />
 					</div>
 				</van-collapse-item>
 				<van-collapse-item title="出行人数" name="2">
@@ -22,7 +23,7 @@
 						</van-cell>
 					</div>
 				</van-collapse-item>
-				
+
 				<!-- //添加出行人 -->
 				<van-collapse-item title="出行人信息" name="3">
 					<div slot="default">
@@ -57,6 +58,8 @@
 </template>
 
 <script>
+	import Http from '../../utils/Http'
+	import api from '../../utils/api'
 	import {
 		Dialog,
 		Toast
@@ -67,7 +70,7 @@
 			return {
 				currentDate: '',
 				minDate: new Date(),
-				maxDate: new Date('2023','10','31'),
+				maxDate: new Date('2023', '10', '31'),
 				personNum: 1,
 				activeName: '4',
 				chosenContactId: null,
@@ -75,7 +78,8 @@
 				editingContact: {},
 				showEdit: false,
 				isEdit: false,
-				list: []
+				list: [],
+				orderData: {}
 			}
 		},
 		components: {
@@ -85,27 +89,37 @@
 			cardType() {
 				return this.chosenContactId !== null ? 'edit' : 'add';
 			},
-
+			showCom() {
+				return this.$store.state.isLogin
+			},
 			currentContact() {
 				const id = this.chosenContactId;
 				return id !== null ? this.list.filter(item => item.id === id)[0] : {};
 			},
-			time(){
-				if(this.currentDate == ''){
+			time() {
+				if (this.currentDate == '') {
 					return '请选择出行时间';
-				}else{
+				} else {
 					return this.currentDate.toLocaleDateString();
 				}
 			}
 		},
+		created() {
+			let orderData = JSON.parse(sessionStorage.getItem('orderData'));
+			if (orderData == null) {
+				Toast('获取数据错误！');
+				this.$router.replace('/home');
+			}
+			this.orderData = orderData;
+		},
 		methods: {
 			//取消时间选择
-			cancelPickTime(){
+			cancelPickTime() {
 				this.currentDate = '';
 				this.activeName = '';
 			},
 			//确认时间选择
-			confirmPickTime(){
+			confirmPickTime() {
 				this.activeName = '2';
 			},
 			// 添加联系人
@@ -151,7 +165,7 @@
 				}
 			},
 			// clickPosition 表示关闭时点击的位置
-			onClose(clickPosition, instance,detail) {
+			onClose(clickPosition, instance, detail) {
 				console.log(detail);
 				switch (clickPosition) {
 					case 'left':
@@ -174,19 +188,37 @@
 				}
 			},
 			//添加订单
-			addOrder(){
-				if(this.currentDate == ''){
+			async addOrder() {
+				if(!this.showCom){
+					Toast('你还没有登录！');
+					this.$router.push('/login');
+					return;
+				}
+				if (this.currentDate == '') {
 					Toast('请选择出行时间');
 					return;
-				}else if(this.list.length ==0){
+				} else if (this.list.length == 0) {
 					Toast('请添加出行人信息');
 					return;
-				}else if(this.personNum != this.list.length){
+				} else if (this.personNum != this.list.length) {
 					Toast('出行人数信息数和人数一致！');
 					return;
 				}
-				
-				
+				let orderid = (new Date).toLocaleDateString().split('/').join('') + (parseInt(Math.random()*99999999)+100000000); 
+				let OrderMsg = {
+					orderid,
+					...this.orderData,
+					traveltime: this.currentDate,
+					personNum: this.personNum,
+					userList: this.list
+				}
+				let result = await Http.post(api.ORDER_ADD,OrderMsg);
+				if(result.data.code == 0){
+					Toast('订购成功！');
+					this.$router.push('/order');
+				}else{
+					Toast('订购失败，请重试');
+				}
 			}
 		}
 	}
