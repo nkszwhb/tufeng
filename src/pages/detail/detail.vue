@@ -19,7 +19,7 @@
        <div class="join-cart">
          加入购物车
        </div>
-       <div class="buy-now">
+       <div class="buy-now" @click="buyNowAction">
          立即订购
        </div>
      </div>
@@ -40,7 +40,7 @@ export default {
     travelDetail
   },
   props:{
-    id:String
+    id:String,
   },
   computed: {
     ...mapState({
@@ -54,9 +54,21 @@ export default {
     })
   },
 	created(){
-		// 请求初始化数据
+    // 请求初始化数据
     this.$store.dispatch('Detail/requestDetailData',this.id);	
     // console.log(this.detailList);   	
+  },
+  methods:{
+    buyNowAction(){
+      let orderData = {
+        'id_new':this.id,
+        'pic':this.bannerList[0],
+        'title':this.detailList.productName,
+        'price':this.detailList.price
+      }
+      sessionStorage.setItem('orderData',JSON.stringify(orderData));
+      this.$router.push(`/purchase`);
+    }
   }
 }
 </script>
