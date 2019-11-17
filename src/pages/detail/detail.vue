@@ -19,7 +19,7 @@
        <div class="join-cart">
          加入购物车
        </div>
-       <div class="buy-now">
+       <div class="buy-now" @click="buyNowAction">
          立即订购
        </div>
      </div>
@@ -27,6 +27,10 @@
 </template>
 
 <script>
+import {
+  Dialog,
+  Toast
+ } from 'vant';
 import {mapState} from 'vuex'
 import banner from './children/banner'
 import introduction from './children/introduction'
@@ -40,9 +44,12 @@ export default {
     travelDetail
   },
   props:{
-    id:String
+    id:String,
   },
   computed: {
+    showCom(){
+      return this.$store.state.isLogin;
+    },
     ...mapState({
       baseList: state=>state.Detail.baseData,
       infoList: state=>state.Detail.infoData,
@@ -54,9 +61,29 @@ export default {
     })
   },
 	created(){
-		// 请求初始化数据
+    // 请求初始化数据
     this.$store.dispatch('Detail/requestDetailData',this.id);	
     // console.log(this.detailList);   	
+  },
+  methods:{
+    buyNowAction(){
+      if(this.showCom){
+          let orderData = {
+          'id_new':this.id,
+          'pic':this.bannerList[0],
+          'title':this.detailList.productName,
+          'price':this.detailList.price
+        }
+        sessionStorage.setItem('orderData',JSON.stringify(orderData));
+        this.$router.push(`/purchase`);
+        // console.log(this.showCom);
+        
+      }else{
+        Toast('请先登录');
+        console.log('请先登录');
+        
+      }
+    }
   }
 }
 </script>

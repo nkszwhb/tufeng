@@ -1,22 +1,4 @@
 
-
-/*
-订单创建
-
-methods：post
-url:'/api/order/add'
-*/
-const ORDER_ADD = '/api/order/add';
-
-/*
-订单创建
-
-methods：post
-url:'/api/order/find_order'
-*/
-const FIND_ORDER = '/api/order/find_order';
-
-
 /*
 	分类搜索api
 	参数： 
@@ -143,10 +125,31 @@ const GOODS_DETAIL_API = '/api/product';
 const MENU = '/api/article/menu';
 
 //搜索列表
-const SEARCH_LIST_API = '/api/destination/v1'
+const SEARCH_LIST_API = '/api/destination/v1';
 
 // 目的地数据
-const DESTINATION_API = '/api/destination/default'
+const DESTINATION_API = '/api/destination/default';
+
+/*
+订单创建
+methods：post
+url:'/api/order/add'
+*/
+const ORDER_ADD = '/api/order/add';
+
+/*
+订单查找
+methods：post
+url:'/api/order/find_order'
+*/
+const FIND_ORDER  = '/api/order/find_order';
+
+/*
+订单状态修改
+methods：post
+url:'/api/order/update_status'
+*/
+const ORDER_UPDATE = '/api/order/update_status';
 
 export default{
   SEND_CODE,
@@ -161,9 +164,10 @@ export default{
   GOODS_DETAIL_API,
   CATEGORY_API,
   FIND_CODE,
+  ORDER_ADD,
+  FIND_ORDER,
   SEARCH_LIST_API,
   DESTINATION_API,
-  ORDER_ADD,
-  FIND_ORDER
+  ORDER_UPDATE
 }
 
