@@ -153,10 +153,11 @@ export default {
 	methods:{
 		// 分类和必玩
 		cageAction(type){
-			sessionStorage.setItem('category',JSON.stringify({
-				'keyword':this.defData.name,
-				'product_line':type == 'ticket' ? 'tickets' : type,
-			}));
+			let category ={'keyword':this.defData.name};
+			if(type != 'custom'){
+				category.product_line = (type == 'ticket' ? 'tickets' : type);
+			}
+			sessionStorage.setItem('category',JSON.stringify(category));
 			this.$router.push('/category')
 			
 		},
@@ -191,6 +192,10 @@ export default {
 		}
 	},
 	created(){
+		
+		if(this.city == ''){
+			this.city = sessionStorage.getItem('city');
+		}
 		// 初始化点击时的数据
 	  this.$store.dispatch('Destination/requestDestination',{name:this.city});
 			

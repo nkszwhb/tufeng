@@ -1,6 +1,7 @@
 <template>
-  <div class="myUserInfo">
-      <h1>wode</h1>
+  <div class="myUserInfo page">
+      <app-header title="我的账户" :hasBack="true"/>
+      <div class="content"></div>
   </div>
 </template>
 

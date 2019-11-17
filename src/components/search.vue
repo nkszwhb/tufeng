@@ -71,6 +71,7 @@ export default{
       this.selectIndex = index;
     },
     destiAction(city){
+      sessionStorage.setItem('city',city);
       this.$router.push(`/dest/${city}`);
       this.$center.$emit('togsearch',false);
 		  this.$store.dispatch('Destination/requestDestination',{name:city});

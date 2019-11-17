@@ -9,12 +9,12 @@
             <div class="app-settings">
                 <van-cell-group>
                     <van-cell class="cell-item" title="系统货币" value="人民币(￥)>" />
-                    <van-cell title="我的账户" value="修改密码、手机号>" is-link to="myUserInfo"/>
+                    <van-cell title="我的账户" value="修改密码、手机号>" is-link to="pages/editUserInfo/myUserInfo"/>
                      <van-cell title="关于我们" value=">" />
                 </van-cell-group>
             </div>
         </app-scroll>
-        <div class="logout border-top">
+        <div class="logout border-top" v-if="showCom">
             <h1 @click="logoutAction">退出登录</h1>
         </div>
   </div>
@@ -30,6 +30,11 @@ export default {
         [CellGroup.name]: CellGroup,
         // [Dialog.Component.name]: Dialog.Component
     },
+    computed:{
+		 showCom(){
+	      return this.$store.state.isLogin
+	    }
+	},
     methods:{
         logoutAction(){
             Dialog.confirm({
@@ -39,11 +44,18 @@ export default {
                 console.log('退出成功');
                 let result =  mineService.requestOutLogin();
                 this.$store.dispatch('handleLogin',false);
-                this.$router.push('/order');
+                this.$router.push('/mine/editUserInfo');
             }).catch(() => {
             // on cancel
             });
         },
+        toEdit(){
+            if(this.showCom){
+                this.$router.push('/mine/myUserInfo');
+            }else{
+                 this.$router.replace(`/login`);
+            }
+        }
     }
 }
 </script>

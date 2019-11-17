@@ -1,15 +1,15 @@
 <template>
   <div id="nav-box">
       <div class="row">
-          <div class="col-home-nav">
+          <div class="col-home-nav" @click="goCategory('boutique')">
             <div class="home-nav nav-boutique"></div>
             <h4>途风精品</h4>
           </div>
-          <div class="col-home-nav">
+          <div class="col-home-nav"  @click="goCategory('tour')">
             <div class="home-nav nav-tour"></div>
             <h4>多日游</h4>
           </div>
-          <div class="col-home-nav">
+          <div class="col-home-nav"  @click="goCategory('activity')">
             <div class="home-nav nav-activity"></div>
             <h4>一日游</h4>
           </div>
@@ -19,11 +19,11 @@
           </div>
       </div>
       <div class="row">
-          <div class="col-home-nav">
+          <div class="col-home-nav"  @click="goCategory('cruise')">
             <div class="home-nav nav-cruise"></div>
             <h4>邮轮游</h4>
           </div>
-          <div class="col-home-nav">
+          <div class="col-home-nav" @click="goCategory('boutique')">
             <div class="home-nav nav-ticket"></div>
             <h4>票务</h4>
           </div>
@@ -31,7 +31,7 @@
             <div class="home-nav nav-visa"></div>
             <h4>签证</h4>
           </div>
-          <div class="col-home-nav">
+          <div class="col-home-nav" @click="goCategory('tickets')">
             <div class="home-nav nav-pickup"></div>
             <h4>接送</h4>
           </div>
@@ -41,7 +41,12 @@
 
 <script>
 export default {
-
+	methods:{
+		goCategory(category){
+			sessionStorage.setItem('category', JSON.stringify({'product_line': category}));
+			this.$router.push(`/category`);
+		}
+	}
 }
 </script>
 

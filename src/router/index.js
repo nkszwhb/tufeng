@@ -28,6 +28,10 @@ const routes = [
 	  component: ()=>import('../pages/order/order'),
 	},
 	{
+		path: '/category',
+		component: ()=>import('../pages/category/category'),	
+	},
+	{
 	  path: '/mine',
 	  component: ()=>import('../pages/mine/mine'),
 	  children: [
@@ -35,15 +39,17 @@ const routes = [
 		  path: 'editUserInfo',
 		  props: true,
 		  component: ()=>import('../pages/mine/edit-userInfo/EditUserInfo'),
-		  children:[
-			{
-				path: 'myUserInfo',
-				props: true,
-				component: ()=>import('../pages/mine/edit-userInfo/MyUserInfo')
-			}
-		  ]
+		},
+		{
+			path: 'myUserInfo',
+			props: true,
+			component: ()=>import('../pages/mine/edit-userInfo/MyUserInfo')
 		}
 	  ]
+	},
+	{
+		path: '/purchase',
+		component: ()=>import('../pages/purchase/purchase')
 	},
 	{
 	  path: '/login',
@@ -59,7 +65,8 @@ const routes = [
 	},
 	homeRouter,
 	{
-		path:'/detail',
+		path:'/detail/:id',
+		props:true,
 		component:()=>import('../pages/detail/detail')
 	},
 	{

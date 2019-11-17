@@ -1,9 +1,8 @@
 <template>
-<div id="app">
-  <keep-alive>
+  <div id="app">
+   
     <router-view></router-view>
-  </keep-alive>
-  <tab-bar></tab-bar>
+    <tab-bar></tab-bar>
 
   <transition enter-active-class="slideInDown" leave-active-class="slideOutDown">
     <search v-if="searchShow"/>
@@ -32,5 +31,9 @@ export default {
 }	
 </script>
 <style lang="scss">
-
+.category{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
 </style>
