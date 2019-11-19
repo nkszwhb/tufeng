@@ -35,7 +35,7 @@ const state = {
 	visited_city_group: [],
 	end_city_group: [],
 	
-	searchTag:[],
+	searchTag:{},
 	//第二栏选择器  途风精品 boutique / 多日游 tour / 一日游  activity /  邮轮游 cruise
 	// product_line: '',
 	
@@ -50,6 +50,21 @@ const mutations = {
 	setCategoryList(state, value) {
 		state.categoryList = value;
 	},
+	addCategoryData(state, value) {
+		// let oldlist = Array.from(state.categoryData);
+		// state.categoryData = state.categoryData.concat(value);
+		// state.categoryData = [...oldlist, ...value];
+		// for(let item of value){
+		// 	state.categoryData.push(item);
+		// }
+		state.categoryData = [...state.categoryData, ...value];
+	},
+	addCategoryList(state, value) {
+		// let oldlist = Array.from(state.categoryList);
+		// state.categoryList = oldlist.concat(value);
+		// state.categoryList = state.categoryList.concat(value);
+		state.categoryList = [...state.categoryList, ...value];
+	},	
 	setLoading(state, value) {
 		state.isLoading = value;
 	},
@@ -83,7 +98,9 @@ const actions = {
 		searchFilter.custom_tag && (searchFilter.custom_tag.length != 0 ) && (searchTag.custom_tag = searchFilter.custom_tag.join());
 		searchFilter.product_quality && searchFilter.product_quality != '' && (searchTag.product_quality = searchFilter.product_quality);
 		searchFilter.stopCityId && (searchFilter.stopCityId != '') && (searchTag.stopCityId = searchFilter.stopCityId);
-		searchTag.page = searchFilter.page ? searchFilter.page : 1;
+		//有加载更多的标志则赋值,否则一律为1
+		searchTag.page = (searchFilter.page && searchFilter.loadmore) ? searchFilter.page : 1;
+		// searchTag.page = searchFilter.page ? searchFilter.page : 1;
 		searchTag.pageSize = searchFilter.pageSize ? searchFilter.pageSize : 10;
 		(context.state.departureDate != '') && (searchTag.departureDate = context.state.departureDate);
 		searchFilter.service_languages && (searchTag.service_languages = '[' +searchFilter.service_languages.toString() + ']');
@@ -119,9 +136,13 @@ const actions = {
 			context.commit('setAttrs',{attr: 'minDate',value: date});
 			date = new Date(departure_date[length-1]/100 ,departure_date[length-1]%100-1);
 			context.commit('setAttrs',{attr: 'maxDate',value: date});
-			
-			context.commit('setCategoryList',categoryList);
-			context.commit('setCategoryData',categoryData);
+			if(searchTag.page > 1){
+				context.commit('addCategoryList',product_list);
+				context.commit('addCategoryData',categoryData);
+			}else{
+				context.commit('setCategoryList',product_list);
+				context.commit('setCategoryData',categoryData);
+			}
 			context.commit('setAttrs',{attr: 'service_languages_arr',value: categoryList.conditions.service_languages});
 			context.commit('setAttrs',{attr: 'departureDateArr',value: categoryList.conditions.departure_date});
 			

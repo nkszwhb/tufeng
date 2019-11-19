@@ -42,7 +42,7 @@
 	height: 146px;
 	width: width 100%;
 	display: flex;
-	box-shadow: 3px 5px 10px -7px #5E5E5E;
+	box-shadow: 0px 0px 5px 3px #999;
 	margin-top: 20px;
 	border-radius: 10px;
 	padding: 0!important;

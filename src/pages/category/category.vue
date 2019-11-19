@@ -1,6 +1,6 @@
 <template>
 	<div class="category">
-		<CategoryHeader :searchTitle="searchFilter.keyword" :showBigItem="showBigItem" />
+		<CategoryHeader :searchTitle="title_word" :showBigItem="showBigItem" />
 		<van-dropdown-menu :close-on-click-overlay="false" :close-on-click-outside="false">
 			<van-dropdown-item :title="start_city" @open="showSelectStartCity" ref="selectStartCity"/>
 			<van-dropdown-item v-model="searchFilter.product_line" @change="changeProductLine" :options="product_arr" />
@@ -69,8 +69,10 @@
 			
 		</van-dropdown-menu>
 		
-		<div class="categorylist">
-			<CategoryItem v-for="item in categoryData" :data="item" :key="item.id" ></CategoryItem>	
+		<div class="categorylist" ref='categoryscroll'>
+			<div class="wrap">
+				<CategoryItem v-for="item in categoryData" :data="item" :key="item.id" ></CategoryItem>		
+			</div>
 		</div>
 		
 		
@@ -118,11 +120,13 @@
 	import CategoryHeader from './children/CategoryHeader'
 	import CategoryItem from './children/CategoryItem'
 	import {mapState} from 'vuex'
+	import BScroll from 'better-scroll'
+	import Toast from 'vant'
 	export default{
 		data(){
 			return{
 				
-				
+				title_word: '',
 				showBigItem: false,
 				choseTimeShow:false,
 				choseStartShow: false,
@@ -184,6 +188,7 @@
 		computed:{
 			...mapState({
 				categoryData: state=> state.Category.categoryData,
+				categoryList: state=> state.Category.categoryList,
 				isLoading: state=> state.Category.isLoading,
 				service_languages_arr: state=>state.Category.service_languages_arr,
 				departureDateArr: state=>state.Category.departureDateArr,
@@ -222,10 +227,11 @@
 		created(){
 			
 			let category = JSON.parse(sessionStorage.getItem('category')) || { product_line:'boutique'};
-			console.log(category);
 			if(category.product_line){
-				this.searchFilter.keyword = this.product_arr.filter(item=>{return item.value == category.product_line})[0].text;
+				this.title_word = this.product_arr.filter(item=>{return item.value == category.product_line})[0].text;
+				this.searchFilter.product_line = category.product_line;
 			}else if(category.keyword){
+				this.title_word = category.keyword;
 				this.searchFilter.keyword = category.keyword;
 			}
 			this.$store.dispatch('Category/getCategory',{
@@ -234,7 +240,41 @@
 				...category
 			});		
 		},
+		mounted(){
+			// 创建滚动视图
+			this.scroll = new BScroll(this.$refs.categoryscroll, {
+					tap: true,
+					click: true,
+					// startY: 0
+			});
+			// 如果需要滚动，先刷新滚动视图，就可以在可滚动范围内滚动
+			this.scroll.on('beforeScrollStart', ()=>{
+				this.scroll.refresh();
+			});
+
+			this.timeout = null;
+			this.scroll.on('scrollEnd',function(){
+				let maxY = this.scroll.maxScrollY;
+				if(this.scroll.y < maxY+20){
+					if(this.categoryData.length%10>0){
+						Toast('没有更多了');
+						return;
+					}
+					if (this.timeout)  clearTimeout(this.timeout);
+					this.timeout = setTimeout(() => {
+							this.loadMore();
+					}, 500);
+				}	
+			}.bind(this));
+		},
 		methods:{
+			loadMore(){
+				if(this.categoryData.length >= 10){
+					let searchTag = {...this.searchFilter, loadmore : true};
+					this.searchFilter.page += 1;
+					this.$store.dispatch('Category/getCategory', searchTag);
+				}
+			},
 			onConfirm() {
 			    this.$refs.item.toggle();
 			},
@@ -270,7 +310,6 @@
 			changeProductLine(){
 				this.$store.dispatch('Category/getCategory', this.searchFilter);	
 			},
-			
 			changeOrderItem(){
 				let searchTag = {
 					...this.searchFilter,
@@ -355,8 +394,11 @@
 		flex: 1;
 		width: 100%;
 		box-sizing: border-box;
-		padding: 0 22px 20px;
+		padding: 0 22px ;
 		overflow: auto;
+		.wrap{
+			padding: 1px 0 20px;
+		}
 	}
 	
 	.filter-item{
