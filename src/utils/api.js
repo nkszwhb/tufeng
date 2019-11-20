@@ -7,6 +7,14 @@ url:'/api/order/update_status'
 */
 const ORDER_UPDATE = '/api/order/update_status';
 
+
+//修改个人信息
+
+const UPDATE_USERINFO = '/api/user/update_userinfo';
+
+
+
+
 /*
 订单创建
 
