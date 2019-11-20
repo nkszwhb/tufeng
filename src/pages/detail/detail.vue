@@ -27,6 +27,10 @@
 </template>
 
 <script>
+import {
+  Dialog,
+  Toast
+ } from 'vant';
 import {mapState} from 'vuex'
 import banner from './children/banner'
 import introduction from './children/introduction'
@@ -43,6 +47,9 @@ export default {
     id:String,
   },
   computed: {
+    showCom(){
+      return this.$store.state.isLogin;
+    },
     ...mapState({
       baseList: state=>state.Detail.baseData,
       infoList: state=>state.Detail.infoData,
@@ -60,14 +67,22 @@ export default {
   },
   methods:{
     buyNowAction(){
-      let orderData = {
-        'id_new':this.id,
-        'pic':this.bannerList[0],
-        'title':this.detailList.productName,
-        'price':this.detailList.price
+      if(this.showCom){
+          let orderData = {
+          'id_new':this.id,
+          'pic':this.bannerList[0],
+          'title':this.detailList.productName,
+          'price':this.detailList.price
+        }
+        sessionStorage.setItem('orderData',JSON.stringify(orderData));
+        this.$router.push(`/purchase`);
+        // console.log(this.showCom);
+        
+      }else{
+        Toast('请先登录');
+        console.log('请先登录');
+        
       }
-      sessionStorage.setItem('orderData',JSON.stringify(orderData));
-      this.$router.push(`/purchase`);
     }
   }
 }

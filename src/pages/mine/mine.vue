@@ -1,7 +1,7 @@
 <template>
 	<div class="mine">
 		<div class="background-box">
-			<div class="background-content" v-if="showCom">
+			<div class="background-content" v-if="!showCom">
 				<div class="avatar">
 					<img src="https://m.toursforfun.com/img/user.png"/>
 				</div>
@@ -17,7 +17,7 @@
 					<span>登录/注册</span>
 				</div> -->
 			</div>
-			<div class="user-Logout" v-if="!showCom" @click="goLogin">
+			<div class="user-Logout" v-if="showCom" @click="goLogin">
 				<img src="https://m.toursforfun.com/img/not-login.png" alt="">
 				<span>登录/注册</span>
 			</div>
@@ -70,7 +70,7 @@ export default{
 	},
 	computed:{
 		 showCom(){
-	      return this.$store.state.isLogin
+	      return !this.$store.state.isLogin
 	    }
 	},
 	methods:{
@@ -78,7 +78,8 @@ export default{
 			this.$router.push(`/mine/editUserInfo`)
 		},
 		goLogin(){
-			this.$router.push(`/login`);	
+			this.$router.push(`/login`);
+			this.$store.dispatch('handleLogin',true);	
 		}
 	}
 }

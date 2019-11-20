@@ -1,7 +1,9 @@
 <template>
 <div class="page" id="order">
-	<nologin v-if="showCom"/>
-	<order v-else/>
+	<!-- <app-scroll> -->
+		<nologin v-if="showCom"/>
+		<order v-else-if="!showCom"/>
+	<!-- </app-scroll> -->
 </div>
 </template>
 
@@ -32,5 +34,8 @@ export default{
 }
 </script>
 
-<style>
+<style scoped lang="scss">
+.content{
+	bottom:49px;
+}
 </style>
