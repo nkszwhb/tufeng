@@ -1,82 +1,94 @@
 <template>
-<div class="page" id="order">
-	<van-tabs  swipeable class="nav"  color="#0090f2" title-active-color="#0090f2">
+<div>
+	<van-tabs  swipeable class="nav" color="#0090f2" title-active-color="#0090f2">
 		<van-tab title="全部"></van-tab>
-		<van-tab title="待付款"></van-tab>
-		<van-tab title="未出行"></van-tab>
+		<van-tab title="未付款"></van-tab>
+		<van-tab title="已付款"></van-tab>
 		<van-tab title="待评价"></van-tab>
 		<van-tab title="退款"></van-tab>
 	</van-tabs>
 
-	<ul>
-      <li v-for="(item,index) in data" >
-		  <div class="title">
-			  <span class="order-id">{{item.orderid}}</span>
-			  <span class="order-status">待支付</span>
-		  </div>
-		  	<div class="order-content">
-			  <div class="img">
-				  <img :src="item.pic" alt="">
-			  </div>
-			  <div class="order-title">
-				  <h2 class="multiple-ellipsis">{{item.title}}</h2>
-				  <div class="select-data">
-					  {{item.traveltime}}出发
-				  </div>
-			  </div>
-		  	</div>
-		  	<div class="pay">
-				实付款:<span>￥{{item.price}}</span>
-			</div>
-			<div class="button" @click="payAction">
-				<span>立即支付</span>
-			</div>
-      </li>
-    </ul>
+	<app-scroll class="content">
+		<orderContent :list="orderData"/>
+	</app-scroll>
 	<!-- <button class="sign-btn" @click="outLoginAction">退出</button> -->
 </div>
 </template>
 
 <script>
-import mineService from '../../../services/mineService'
-import Http from '../../../utils/Http'
-import api from '../../../utils/api'
+import {mapState} from 'vuex'
+import { log } from 'util'
+import orderContent from './orderContent'
 export default{
 	data(){
 		return{
-			data:{},
 			id:'',
-			payedstatus:1//-1 全部 0待付款,1未出行,2待评价,3退款
+			selectedstatus:0//-1 全部 0待付款,1未出行,2待评价,3退款
 		}
 	},
+	components:{
+		orderContent
+	},
 	methods:{
-		async payAction(){
-			console.log(1);
+		async payAction(index){
+			// console.log(1);
+			// this.$refs.btn.innerHTML="已支付";
+			let result = await Http.post(api.ORDER_UPDATE,{status:this.selectedstatus,id:index}); 
+			console.log(index);
 			
-			let result = await Http.post(api.ORDER_UPDATE,{status:this.payedstatus,id:this.data.orderid}); 
-
 			let payedData = await Http.get(api.FIND_ORDER);
 			this.data = payedData.data.data;
 			this.$Toast('支付成功!');
+			
 			console.log(result);
 			console.log(this.data);
 			
+		},
+
+	},
+	computed:{
+		...mapState({
+			// 全部
+			orderData:state=>state.Order.orderList,
+		}),
+		showList(){
+			// 全部
+			if(this.selectedstatus === 0){
+				return this.orderList;
+			}
+			// 各种状态数据的过滤
+			return this.orderList.filter(item=>{
+				return item.status === (this.selectedstatus-1);
+			});
+		},
+		payTxt:function(){
+			return function(index){
+				if(index==1){
+					return '已支付'
+					
+				}else{
+					return '立即支付'
+				}
+			}
 		}
 	},
 	created(){
-		(async ()=>{
-			console.log(1);
-			let result = await Http.get(api.FIND_ORDER);
-			this.data = result.data.data;
-			console.log(this.data);
-		
-		})()
+		this.$store.dispatch('Order/requestOrderList');
 	}
 
 }
 </script>
 
 <style lang="scss" scoped>
+.content{
+	top:44px;
+	bottom:0;
+}
+// .nav{
+// 	position: absolute;
+// 	top:0;
+// 	left:0;
+// }
 ul{
 	margin-top:10px;
 	border-top:1px solid #ddd;

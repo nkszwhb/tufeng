@@ -13,6 +13,7 @@ export default{
   methods:{
     goLoginAction(){
       this.$router.push('/login');
+      // this.$store.dispatch('handleLogin',true);
     }
   }
 }
