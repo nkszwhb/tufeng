@@ -188,7 +188,6 @@
 		computed:{
 			...mapState({
 				categoryData: state=> state.Category.categoryData,
-				categoryList: state=> state.Category.categoryList,
 				isLoading: state=> state.Category.isLoading,
 				service_languages_arr: state=>state.Category.service_languages_arr,
 				departureDateArr: state=>state.Category.departureDateArr,

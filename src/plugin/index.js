@@ -22,12 +22,14 @@ import {
 	Popup,
 	Loading,
 	Collapse,
+	Field,
 	CollapseItem,
 	Stepper,
 	ContactCard,
 	ContactList,
 	ContactEdit,
-	SwipeCell
+	SwipeCell,
+	Dialog
 } from 'vant'
 
 
@@ -60,7 +62,9 @@ export default {
 			.use(Toast)
 			.use(Popup)
 			.use(Loading)
+			.use(Field)
 			.use(Collapse)
+			.use(Dialog)
 			.use(CollapseItem)
 			.use(Stepper)
 			.use(ContactCard)
