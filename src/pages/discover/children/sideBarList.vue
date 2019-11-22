@@ -50,8 +50,9 @@ export default {
     .found-city{
         width: 100%;
         height: 100%;
-        padding: 0px 24px 18px 8%;
+        padding: 0px 24px 18px 15px;
         overflow: scroll;
+		box-sizing: border-box;
         .city-item{
             display: block;
             width: 108px;
