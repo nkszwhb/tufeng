@@ -6,6 +6,7 @@
 		<div class="content">
 			<sideBar :list="MenuList"/>
 		</div>
+		<router-view></router-view>
 	</div>
 </template>
 

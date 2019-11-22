@@ -168,6 +168,7 @@ url:'/api/order/find_order'
 const FIND_ORDER  = '/api/order/find_order';
 
 
+
 export default{
   SEND_CODE,
   REGISTER_API,
@@ -186,6 +187,6 @@ export default{
   SEARCH_LIST_API,
   DESTINATION_API,
   ORDER_UPDATE,
-  UPDATE_USERINFO
+  UPDATE_USERINFO,
 }
 

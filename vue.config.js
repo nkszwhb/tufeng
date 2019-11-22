@@ -10,6 +10,9 @@ module.exports = {
       },
       '/api': {
         target: 'https://app.toursforfun.com'
+      },
+      '/h5/article':{
+        target: 'https://m.toursforfun.com'
       }
     }
   }
