@@ -68,7 +68,7 @@
 	export default {
 		data() {
 			return {
-				currentDate: '',
+				currentDate: new Date(),
 				minDate: new Date(),
 				maxDate: new Date('2023', '10', '31'),
 				personNum: 1,
@@ -208,7 +208,7 @@
 				let OrderMsg = {
 					orderid,
 					...this.orderData,
-					traveltime: this.currentDate,
+					traveltime: this.currentDate.toLocaleDateString(),
 					personNum: this.personNum,
 					userList: this.list
 				}

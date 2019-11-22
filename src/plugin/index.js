@@ -27,7 +27,9 @@ import {
 	ContactCard,
 	ContactList,
 	ContactEdit,
-	SwipeCell
+	SwipeCell,
+	Dialog,
+	Field,
 } from 'vant'
 
 
@@ -66,7 +68,9 @@ export default {
 			.use(ContactCard)
 			.use(ContactList)
 			.use(ContactEdit)
-			.use(SwipeCell);
+			.use(SwipeCell)
+			.use(Dialog)
+			.use(Field);
 		Vue.prototype.$Toast = Toast;
 		// 使用自定义的滚动组件
 		Vue.component(AppScroll.name, AppScroll);
