@@ -169,38 +169,6 @@ const DESTINATION_API = '/api/destination/default';
 
 
 
-<<<<<<< HEAD
-=======
-methods：post
-url:'/api/order/find_order'
-*/
-const FIND_ORDER  = '/api/order/find_order';
-
-
-
-export default{
-  SEND_CODE,
-  REGISTER_API,
-  LOGIN_API,
-  CHECK_LOGIN,
-  OUT_LOGIN,
-  QQ_LOGIN,
-  WEIBO_LOGIN,
-  GOODS_LIST_API,
-  MENU,
-  GOODS_DETAIL_API,
-  CATEGORY_API,
-  FIND_CODE,
-  ORDER_ADD,
-  FIND_ORDER,
-  SEARCH_LIST_API,
-  DESTINATION_API,
-  ORDER_UPDATE,
-  UPDATE_USERINFO,
-}
->>>>>>> wn
-
-
 export default {
 	// HOST,
 	SEND_CODE,
