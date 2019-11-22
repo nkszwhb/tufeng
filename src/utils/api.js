@@ -1,3 +1,5 @@
+// const HOST = 'http://10.20.152.32:5000';
+
 
 /*
 订单状态修改
@@ -5,7 +7,7 @@
 methods：post
 url:'/api/order/update_status'
 */
-const ORDER_UPDATE = '/api/order/update_status';
+const ORDER_UPDATE = '/api/order/update_status';
 
 
 
@@ -24,8 +26,18 @@ const UPDATE_USERINFO = '/api/user/update_userinfo';
 methods：post
 url:'/api/order/add'
 */
-const ORDER_ADD = '/api/order/add';
+const ORDER_ADD = '/api/order/add';
 
+<<<<<<< HEAD
+=======
+/*
+订单创建
+
+methods：post
+url:'/api/order/find_order'
+*/
+const FIND_ORDER = '/api/order/find_order';
+>>>>>>> whb
 
 /*
 	分类搜索api
@@ -168,6 +180,7 @@ url:'/api/order/find_order'
 const FIND_ORDER  = '/api/order/find_order';
 
 
+<<<<<<< HEAD
 export default{
   SEND_CODE,
   REGISTER_API,
@@ -187,5 +200,25 @@ export default{
   DESTINATION_API,
   ORDER_UPDATE,
   UPDATE_USERINFO
+=======
+export default {
+	// HOST,
+	SEND_CODE,
+	REGISTER_API,
+	LOGIN_API,
+	CHECK_LOGIN,
+	OUT_LOGIN,
+	QQ_LOGIN,
+	WEIBO_LOGIN,
+	GOODS_LIST_API,
+	MENU,
+	GOODS_DETAIL_API,
+	CATEGORY_API,
+	FIND_CODE,
+	SEARCH_LIST_API,
+	DESTINATION_API,
+	ORDER_ADD,
+	FIND_ORDER,
+	UPDATE_USERINFO
+>>>>>>> whb
 }
-

@@ -11,10 +11,13 @@
 <<<<<<< HEAD
                     <van-cell class="cell-item" title="系统货币" value="人民币(￥)>" />
                     <van-cell title="我的账户" value="修改密码、手机号>" is-link to="/mine/myUserInfo"/>
+<<<<<<< HEAD
 =======
                     <van-cell class="cell-item" title="系统货币"  :value="showCom ? '人民币(￥)>' : '请登录'" is-link @click="toEdit"/>
                     <van-cell title="我的账户" :value ="showCom ? '修改密码、手机号>' : '请登录'" is-link @click="toEdit"/>
 >>>>>>> wn
+=======
+>>>>>>> whb
                      <van-cell title="关于我们" value=">" />
                 </van-cell-group>
             </div>
