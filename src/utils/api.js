@@ -168,13 +168,7 @@ const SEARCH_LIST_API = '/api/destination/v1';
 const DESTINATION_API = '/api/destination/default';
 
 
-/*
-订单创建
 
-methods：post
-url:'/api/order/find_order'
-*/
-const FIND_ORDER  = '/api/order/find_order';
 
 
 export default {

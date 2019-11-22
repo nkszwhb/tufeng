@@ -30,7 +30,6 @@ import {
 	ContactEdit,
 	SwipeCell,
 	Dialog,
-	Field,
 } from 'vant'
 
 
