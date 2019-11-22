@@ -29,12 +29,8 @@ import {
 	ContactList,
 	ContactEdit,
 	SwipeCell,
-<<<<<<< HEAD
-	Dialog
-=======
 	Dialog,
 	Field,
->>>>>>> whb
 } from 'vant'
 
 
@@ -76,7 +72,6 @@ export default {
 			.use(ContactList)
 			.use(ContactEdit)
 			.use(SwipeCell)
-			.use(Dialog)
 			.use(Field);
 		Vue.prototype.$Toast = Toast;
 		// 使用自定义的滚动组件

@@ -462,8 +462,8 @@
 					border: none;
 					background: #eee;
 					display: inline;
-					width: 120px;
-					height: 30px;
+					// width: 120px;
+					// height: 30px;
 					outline: none;
 					text-align: center;
 				}

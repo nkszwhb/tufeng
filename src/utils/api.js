@@ -28,8 +28,6 @@ url:'/api/order/add'
 */
 const ORDER_ADD = '/api/order/add';
 
-<<<<<<< HEAD
-=======
 /*
 订单创建
 
@@ -37,7 +35,6 @@ methods：post
 url:'/api/order/find_order'
 */
 const FIND_ORDER = '/api/order/find_order';
->>>>>>> whb
 
 /*
 	分类搜索api
@@ -180,27 +177,6 @@ url:'/api/order/find_order'
 const FIND_ORDER  = '/api/order/find_order';
 
 
-<<<<<<< HEAD
-export default{
-  SEND_CODE,
-  REGISTER_API,
-  LOGIN_API,
-  CHECK_LOGIN,
-  OUT_LOGIN,
-  QQ_LOGIN,
-  WEIBO_LOGIN,
-  GOODS_LIST_API,
-  MENU,
-  GOODS_DETAIL_API,
-  CATEGORY_API,
-  FIND_CODE,
-  ORDER_ADD,
-  FIND_ORDER,
-  SEARCH_LIST_API,
-  DESTINATION_API,
-  ORDER_UPDATE,
-  UPDATE_USERINFO
-=======
 export default {
 	// HOST,
 	SEND_CODE,
@@ -220,5 +196,4 @@ export default {
 	ORDER_ADD,
 	FIND_ORDER,
 	UPDATE_USERINFO
->>>>>>> whb
 }
