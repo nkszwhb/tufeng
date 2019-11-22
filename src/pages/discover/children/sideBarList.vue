@@ -23,12 +23,17 @@ export default {
         id:{
             type:Number,
             required:true
+        },
+        listId:{
+            type:Number,
+            required:true,
+            default:()=>0
         }
     },
    methods:{
        btnAction(index){
            this.selectedIndex = index;
-       }
+       }    
    },
 }
 </script>

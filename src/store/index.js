@@ -10,6 +10,7 @@ import Home from './Home'
 import Discover from "./Discover"
 import Detail from './Detail'
 import Destination from './Destination'
+import ArticleList from './ArticleList'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -44,6 +45,7 @@ export default new Vuex.Store({
 		Home,
 		Discover,
 		Detail,
-		Destination
+		Destination,
+		ArticleList
 	}
 });

@@ -1,5 +1,5 @@
 <template>
-    <div class="dest-hot-item">
+    <div class="dest-hot-item" @click="goSearch">
         <img v-lazy="data.image">
         <div class="hot-dest-name">
             <span>{{data.title}}</span>
@@ -15,8 +15,15 @@ export default {
             required: true
         }
     },
+    methods:{
+        goSearch(){
+            const keyword = {keyword:this.data.title};
+            sessionStorage.setItem('category',JSON.stringify(keyword));
+            this.$router.push(`/category`);
+        },
+    },
     created(){
-        // console.log(this.data);
+        // console.log(this.data.title);
         
     }
 

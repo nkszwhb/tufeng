@@ -7,7 +7,7 @@
             </van-sidebar>
          </app-scroll>
      </div>
-     <sideBarList :sideBarItem="list[this.selectedIndex]" :id="selectedIndex"/>
+     <sideBarList :sideBarItem="list[this.selectedIndex]" :id="selectedIndex" :listId="list.cid"/>
 </div>
 </template>
 
